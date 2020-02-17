@@ -23,8 +23,10 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import DeviceInfo from 'react-native-device-info';
 
 const App: () => React$Node = () => {
+  console.log(DeviceInfo.useBatteryLevel());
   return (
     <>
       <StatusBar barStyle="dark-content" />
