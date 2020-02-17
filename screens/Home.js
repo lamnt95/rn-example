@@ -12,17 +12,25 @@ const styles = StyleSheet.create({
 });
 
 function navigateDetail(navigation) {
-  navigation.navigate(ROUTE.DETAIL);
+  navigation.navigate(ROUTE.DETAIL, {itemName: 'Detail Product'});
 }
 
-export default function Home({navigation}) {
+function setParams(navigation) {
+  navigation.setParams({
+    itemName: Date.now(),
+  });
+}
+
+export default function Home({navigation, route}) {
+  const {itemName} = route.params || {};
   return (
     <View style={styles.container}>
-      <Text>Home</Text>
+      <Text>Home {itemName}</Text>
       <Button
         title="Navigate to Detail"
         onPress={() => navigateDetail(navigation)}
       />
+      <Button title="Set Param" onPress={() => setParams(navigation)} />
     </View>
   );
 }
