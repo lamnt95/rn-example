@@ -12,11 +12,11 @@ const styles = StyleSheet.create({
 });
 
 function navigateHome(navigation) {
-  navigation.navigate(ROUTE.HOME);
+  navigation.navigate(ROUTE.HOME, {itemName: 'From Detail to Home'});
 }
 
 function pushDetail(navigation) {
-  navigation.push(ROUTE.DETAIL);
+  navigation.push(ROUTE.DETAIL, {itemName: Math.round(Math.random() * 100)});
 }
 
 function goBack(navigation) {
@@ -27,10 +27,11 @@ function popToTop(navigation) {
   navigation.popToTop();
 }
 
-export default function Detail({navigation}) {
+export default function Detail({navigation, route}) {
+  const {itemName} = route.params || {};
   return (
     <View style={styles.container}>
-      <Text>Detail</Text>
+      <Text>Detail {itemName}</Text>
       <Button
         title=" Navigate to HomeHome"
         onPress={() => navigateHome(navigation)}

@@ -14,6 +14,7 @@ function App() {
         name={ROUTE.HOME}
         component={Home}
         options={{title: 'Overview'}}
+        initialParams={{itemName: 'Home Product'}}
       />
       <Screen name={ROUTE.DETAIL} component={Detail} />
     </Navigator>
