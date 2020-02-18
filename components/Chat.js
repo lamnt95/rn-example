@@ -10,24 +10,20 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class LifeCycle extends React.Component {
+export default class Chat extends React.Component {
   constructor(props) {
     super(props);
     Navigation.events().bindComponent(this);
   }
 
-  componentDidAppear() {
-    console.log('componentDidAppear');
-  }
+  componentDidAppear() {}
 
-  componentDidDisappear() {
-    console.log('componentDidDisappear');
-  }
+  componentDidDisappear() {}
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Life Cycle</Text>
+        <Text>Chat</Text>
       </View>
     );
   }

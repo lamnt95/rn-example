@@ -1,14 +1,8 @@
 import {Navigation} from 'react-native-navigation';
-import ROUTE from '../constant/route';
+import setRoot from '../route/setRoot';
 
 export default function registerAppLaunchedListener() {
   Navigation.events().registerAppLaunchedListener(() => {
-    Navigation.setRoot({
-      root: {
-        component: {
-          name: ROUTE.WELCOME,
-        },
-      },
-    });
+    setRoot();
   });
 }

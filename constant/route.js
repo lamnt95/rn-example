@@ -1,8 +1,10 @@
 import {getRoute} from '../utils/rnn';
 
 const ROUTE = {
-  WELCOME: getRoute('WELCOME'),
-  LIFE_CYCLE: getRoute('LIFE_CYCLE'),
+  FEED: getRoute('FEED'),
+  CHAT: getRoute('CHAT'),
+  GROUP: getRoute('GROUP'),
+  FEED_ITEM_DETAIL: getRoute('FEED_ITEM_DETAIL'),
 };
 
 export default ROUTE;
