@@ -1,10 +1,5 @@
-import {getRoute} from '../utils/rnn';
+import getRoute from '../route/getRoute';
 
-const ROUTE = {
-  FEED: getRoute('FEED'),
-  CHAT: getRoute('CHAT'),
-  GROUP: getRoute('GROUP'),
-  FEED_ITEM_DETAIL: getRoute('FEED_ITEM_DETAIL'),
-};
+const ROUTE = {};
 
 export default ROUTE;
