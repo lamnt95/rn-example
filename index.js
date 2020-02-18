@@ -1,20 +1,11 @@
 /**
  * @format
  */
-import {Navigation} from 'react-native-navigation';
-import App from './App';
-import LifeCycle from './components/LifeCycle';
 import ROUTE from './constant/route';
+import registerComponent from './route/registerComponent';
+import showOverlay from './route/showOverlay';
+import registerAppLaunchedListener from './route/registerAppLaunchedListener';
 
-Navigation.registerComponent(ROUTE.WELCOME, () => App);
-Navigation.registerComponent(ROUTE.LIFE_CYCLE, () => LifeCycle);
-
-Navigation.events().registerAppLaunchedListener(() => {
-  Navigation.setRoot({
-    root: {
-      component: {
-        name: ROUTE.LIFE_CYCLE,
-      },
-    },
-  });
-});
+registerComponent();
+registerAppLaunchedListener();
+showOverlay(ROUTE.LIFE_CYCLE);
