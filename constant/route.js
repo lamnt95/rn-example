@@ -1,5 +1,7 @@
-import getRoute from '../route/getRoute';
-
-const ROUTE = {};
+const ROUTE = {
+  LAYOUTS: 'LAYOUTS',
+  OPTIONS: 'OPTIONS',
+  NAVIGATION: 'NAVIGATION',
+};
 
 export default ROUTE;

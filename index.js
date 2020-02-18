@@ -1,8 +1,8 @@
 /**
  * @format
  */
-import registerComponent from './route/registerComponent';
-import registerAppLaunchedListener from './route/registerAppLaunchedListener';
+import registerComponent from './router/registerComponent';
+import registerAppLaunchedListener from './router/registerAppLaunchedListener';
 
 registerComponent();
 registerAppLaunchedListener();
