@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import Immutable from 'seamless-immutable';
 import {switchMap} from 'rxjs/operators';
-import epic from '../common/epic';
 import {authenWithVnd} from '../services/auth';
 import {ofType} from 'redux-observable';
 
@@ -9,6 +8,7 @@ export const types = {
   LOGIN_START: 'AUTH/LOGIN_START',
   LOGIN_SUCCESS: 'AUTH/LOGIN_SUCCESS',
   LOGIN_FAIL: 'AUTH/LOGIN_FAIL',
+  ADD_DEVICE_ID: 'AUTH/ADD_DEVICE_ID',
 };
 
 export const actions = {
@@ -27,6 +27,11 @@ export const actions = {
     error,
     meta,
   }),
+  addDeviceId: (payload, meta) => ({
+    type: types.ADD_DEVICE_ID,
+    payload,
+    meta,
+  }),
 };
 
 export const selectors = {
@@ -34,7 +39,10 @@ export const selectors = {
   getDeviceId: state => _.get(state, 'auth.deviceId'),
 };
 
-export const initState = {};
+export const initState = {
+  accessToken: undefined,
+  deviceId: undefined,
+};
 
 export function reducer(state = initState, action) {
   const auth = _.get(action, 'payload.auth');
@@ -47,14 +55,14 @@ export function reducer(state = initState, action) {
 export const loginStartEpic = (action$, store) =>
   action$.pipe(
     ofType(types.LOGIN_START),
-    switchMap(async ({meta}) => {
+    switchMap(async ({payload, meta}) => {
       const state = store.value;
-      const accessToken = selectors.getAccessToken(state);
+      const accessToken = _.get(payload, 'auth.accessToken');
       const deviceId = selectors.getDeviceId(state);
       const {scope} = meta || {};
       try {
-        const res = await authenWithVnd(deviceId, accessToken);
-        return Promise.resolve(actions.loginSuccess({auth: res}, {scope}));
+        await authenWithVnd(deviceId, accessToken);
+        return Promise.resolve(actions.loginSuccess(null, {scope}));
       } catch (e) {
         return Promise.resolve(actions.loginFail(e, {scope}));
       }
